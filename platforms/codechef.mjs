@@ -1,5 +1,6 @@
-const puppeteer=require('puppeteer')
-const cheerio=require('cheerio')
+import fetch from 'node-fetch';
+import cheerio from 'cheerio';
+
 
 const getDetails=async function(html){
     const codechefDetails={}
@@ -29,22 +30,10 @@ const getDetails=async function(html){
 }
 
 const codechef=async function(url){
-    let details;
-    let browser;
-    try{
-        browser=await puppeteer.launch({headless:'new'})
-        const page=await browser.newPage()
-        await page.goto(url)
-        const html=await page.content()
-        details=await getDetails(html)
-    }catch(err){
-        console.log(err);
-    }finally{
-        if(browser){
-            await browser.close()
-        }
-    }
+    const response = await fetch(url);
+    const htmlCode = await response.text();
+    const details=await getDetails(htmlCode)
     return details
 }
 
-module.exports=codechef
+export default codechef;

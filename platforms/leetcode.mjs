@@ -1,7 +1,8 @@
-const puppeteer = require('puppeteer');
-const cheerio = require('cheerio');
+import fetch from 'node-fetch';
+import cheerio from 'cheerio';
 
-const getDetails= async function(html){
+
+const getDetails= async (html)=>{
     const leetcodeDetails={}
     const $ = cheerio.load(html);
 
@@ -97,31 +98,14 @@ const getDetails= async function(html){
     return leetcodeDetails
 }
 
-const leetcode= async function(url){
-    let details;
-    let browser
-    try{
-        browser=await puppeteer.launch({headless:'new'})
-        const page =await browser.newPage();
-        await page.goto(url)
-        const html= await page.content()
-        details=await getDetails(html)
-    }
-    catch(err)
-    {
-        console.log(err);
-    }
-    finally{
-        if(browser){
-            await browser.close()
-        }
-    }
-
+const leetcode= async (url)=>{
+    const response = await fetch(url);
+    const htmlCode = await response.text();
+    const details=await getDetails(htmlCode)
     return details
-
 }
 
-module.exports=leetcode
+export default leetcode;
 
 //contest-rating:- text-label-1.dark\\:text-dark-label-1.flex.items-center.text-2xl
 //name:- text-label-1.dark\\:text-dark-label-1.break-all.text-base.font-semibold
