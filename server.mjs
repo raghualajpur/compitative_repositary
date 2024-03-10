@@ -5,7 +5,7 @@ import cors from 'cors';
 const app=express()
 app.use(express.json())
 app.use(cors())
-app.listen(3004, () => {
+app.listen(3010, () => {
     console.log("Server Started at http://localhost:3004/");
 });
 
@@ -13,20 +13,22 @@ app.get("/", (request,response)=>{
     response.send("this is the root page")
 })
 
-app.get("/leetcode",async (request,response)=>{
+app.post("/leetcode",async (request,response)=>{
+    const {username}=request.body
     try {
-        const leetcodeDetails = await leetcode('https://leetcode.com/alajpurraghu/');
-        response.json(leetcodeDetails)
+        const leetcodeDetails = await leetcode(`https://leetcode.com/${username}/`);
+        response.send(leetcodeDetails)
     } catch (error) {
         console.error(error);
         response.status(500).json({ error: 'Internal Server Error' });
     }
 })
 
-app.get("/codechef", async (request, response) => {
+app.post("/codechef", async (request, response) => {
+    const {username}=request.body
     try {
-        const codechefDetails = await codechef('https://www.codechef.com/users/raghualajpur');
-        response.json(codechefDetails);
+        const codechefDetails = await codechef(`https://www.codechef.com/users/${username}`);
+        response.send(codechefDetails);
     } catch (error) {
         console.error(error);
         response.status(500).json({ error: 'Internal Server Error' });
