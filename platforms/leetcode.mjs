@@ -18,7 +18,7 @@ const getDetails= async (html)=>{
         lst.push($(this).text())
     })
     if(lst){
-        leetcodeDetails["problems_solved"]=0
+        leetcodeDetails["problems_solved"]=0   
     }
     for(let i of lst){
         if(i!==''){
