@@ -26,7 +26,7 @@ app.post("/codeforces", async (request,response)=>{
 })
 
 app.post("/leetcode",async (request,response)=>{
-    const {username}=request.body
+    const {username}=request.body  
     try {
         const leetcodeDetails = await leetcode(`https://leetcode.com/${username}/`);
         response.send(leetcodeDetails)
