@@ -14,7 +14,7 @@ app.get("/", (request,response)=>{
     response.send("this is the root page")
 })
 
-app.get("/codeforces", async (request,response)=>{
+app.post("/codeforces", async (request,response)=>{
     const {username} = request.body
     try {
         const codeForceDetails = await codeForces(`https://codeforces.com/profile/${username}`,`https://codeforces.com/contests/with/${username}`);
@@ -25,7 +25,7 @@ app.get("/codeforces", async (request,response)=>{
     }
 })
 
-app.get("/leetcode",async (request,response)=>{
+app.post("/leetcode",async (request,response)=>{
     const {username}=request.body
     try {
         const leetcodeDetails = await leetcode(`https://leetcode.com/${username}/`);
@@ -36,7 +36,7 @@ app.get("/leetcode",async (request,response)=>{
     }
 })
 
-app.get("/codechef", async (request, response) => {
+app.post("/codechef", async (request, response) => {
     const {username}=request.body
     try {
         const codechefDetails = await codechef(`https://www.codechef.com/users/${username}`);
