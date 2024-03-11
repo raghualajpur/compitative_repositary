@@ -6,22 +6,18 @@ const getDetails= async (html)=>{
     const leetcodeDetails={}
     const $ = cheerio.load(html);
     let lst=[]
-    while(lst.length===0){
-        $('body div.hidden div.text-label-1').each(function(){
-            setTimeout(()=>{},1000)
-            lst.push($(this).text())
-        })
-    }
+    $('body div.hidden div.text-label-1').each(function(){
+        setTimeout(()=>{},5000)
+        lst.push($(this).text())
+    })
     leetcodeDetails["rating"]=lst[0]
     leetcodeDetails["ranking"]=lst[1]
     leetcodeDetails["contest_attended"]=lst[2]
     lst=[]
-    while(lst.length===0){
-        $('body div.space-y-4 span.text-base').each(function(){
-            setTimeout(()=>{},1000)
-            lst.push($(this).text())
-        })
-    }
+    $('body div.space-y-4 span.text-base').each(function(){
+        setTimeout(()=>{},5000)
+        lst.push($(this).text())
+    })
     if(lst){
         leetcodeDetails["problems_solved"]=0
     }
