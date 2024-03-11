@@ -10,7 +10,7 @@ const getDetails= async (html1,html2)=>{
         listOfNumbers.push($(this).text().trim().slice(0,-1))
         
     })
-    codeForcesDetails["problemsSolved"]=listOfNumbers[0].split(" ")[0]
+    codeForcesDetails["problemsSolved"]=listOfNumbers[0]
     listOfNumbers=[]
     $('div.info ul li span.user-gray').each(function(){
         listOfNumbers.push($(this).text())
