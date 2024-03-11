@@ -6,7 +6,11 @@ const getDetails= async (html)=>{
     const leetcodeDetails={}
     const $ = cheerio.load(html);
 
+
     $('div').each(function () {
+        setTimeout(()=>{
+
+        },5000)
         if($(this)[0]['attribs']['class']==`text-label-1 dark:text-dark-label-1 flex items-center text-2xl`){
             leetcodeDetails['contest_rating']=$(this).text()
         }
