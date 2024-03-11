@@ -29,7 +29,7 @@ const getDetails= async (html1,html2)=>{
 
 const codeForces= async (url1,url2)=>{
     const response1 = await fetch(url1);
-    const response2 = await fetch('https://codeforces.com/contests/with/raghualajpur2010030005')
+    const response2 = await fetch(url2)
     const htmlCode1 = await response1.text();
     const htmlCode2 = await response2.text();
     const details=await getDetails(htmlCode1,htmlCode2)
