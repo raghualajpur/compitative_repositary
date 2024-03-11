@@ -1,21 +1,20 @@
 import fetch from 'node-fetch';
 import cheerio from 'cheerio';
-import { LeetCode } from "leetcode-query";
 
 const getDetails= async (html)=>{
     const leetcodeDetails={}
     const $ = cheerio.load(html);
+    try{
     let lst=[]
-    $('body div.hidden div.text-label-1').each(function(){
-        setTimeout(()=>{},5000)
+    $('body div.hidden div.text-label-1').each(async function(){
         lst.push($(this).text())  
     })
     leetcodeDetails["rating"]=lst[0]
     leetcodeDetails["ranking"]=lst[1]
     leetcodeDetails["contest_attended"]=lst[2]
+    await new Promise(resolve => setTimeout(resolve, 5000));
     lst=[]
-    $('body div.space-y-4 span.text-base').each(function(){
-        setTimeout(()=>{},5000)
+    $('body div.space-y-4 span.text-base').each(async function(){
         lst.push($(this).text())
     })
     if(lst){
@@ -27,6 +26,9 @@ const getDetails= async (html)=>{
         }
     }
     return leetcodeDetails
+    }catch(error){
+        return {}
+    }
 }
 
 const leetcode= async (url)=>{
