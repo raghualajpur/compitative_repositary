@@ -29,7 +29,7 @@ app.post("/leetcode",async (request,response)=>{
     const {username}=request.body  
     try {
         const leetcodeDetails = await leetcode(`https://leetcode.com/${username}/`);
-        response.send(leetcodeDetails)
+        response.send(leetcodeDetails)   
     } catch (error) {
         console.error(error);
         response.status(500).json({ error: 'Internal Server Error' });
