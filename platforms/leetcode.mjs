@@ -8,7 +8,7 @@ const getDetails= async (html)=>{
     let lst=[]
     $('body div.hidden div.text-label-1').each(function(){
         setTimeout(()=>{},5000)
-        lst.push($(this).text())
+        lst.push($(this).text())  
     })
     leetcodeDetails["rating"]=lst[0]
     leetcodeDetails["ranking"]=lst[1]
