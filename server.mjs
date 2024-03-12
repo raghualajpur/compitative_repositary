@@ -5,7 +5,11 @@ import codeForces from './platforms/codeforces.mjs';
 import cors from 'cors';
 const app=express()
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:3004',
+    methods: ['GET', 'POST'], // Add other allowed methods if needed
+    allowedHeaders: ['Content-Type'], // Add other allowed headers if needed
+}));
 app.listen(3010, () => {
     console.log("Server Started at http://localhost:3004/");
 });
