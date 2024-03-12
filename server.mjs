@@ -20,7 +20,7 @@ app.post("/codeforces", async (request,response)=>{
         setTimeout(()=>{},2000)
         const codeForceDetails = await codeForces(`https://codeforces.com/profile/${username}`,`https://codeforces.com/contests/with/${username}`);
         setTimeout(()=>{},2000)
-        response.send(codeForceDetails)
+        response.json(codeForceDetails)
     } catch (error) {
         console.error(error);
         response.status(500).json({ error: 'Internal Server Error' });
@@ -32,7 +32,7 @@ app.post("/leetcode",async (request,response)=>{
     try {
         const leetcodeDetails = await leetcode(`https://leetcode.com/${username}/`);
 
-        response.send(leetcodeDetails)   
+        response.json(leetcodeDetails)   
     } catch (error) {
         console.error(error);
         response.status(500).json({ error: 'Internal Server Error' });
@@ -45,7 +45,7 @@ app.post("/codechef", async (request, response) => {
         setTimeout(()=>{},2000)
         const codechefDetails = await codechef(`https://www.codechef.com/users/${username}`);
         setTimeout(()=>{},2000)
-        response.send(codechefDetails);
+        response.json(codechefDetails);
     } catch (error) {
         console.error(error);
         response.status(500).json({ error: 'Internal Server Error' });
